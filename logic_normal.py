@@ -252,7 +252,7 @@ class LogicNormal(object):
     def check_kor_sub(data, tmdb, sub_o_path):
         logger.debug('자막 체크 시작!')
         try:
-            if data['guessit']['release_group'] in ['SW', 'ST', 'SAP']:
+            if data['guessit']['release_group'] in ['SW', 'ST', 'SA', 'SAP']:
                 logger.debug('VOD 파일')
                 return True
             if os.path.isfile(os.path.splitext(data['fullPath'])[0]+'.ko.srt'):
