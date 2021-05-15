@@ -220,7 +220,7 @@ class LogicNormal(object):
                                     try:
                                         logger.debug('왓챠 메인 국가 정보 없음, 시리즈에서 국가 정보 검색') 
                                         tmdb['data']['country'].insert(0, watcha['data'][i]['seasons'][0]['info']['country'][0]) 
-                                        logger.debug('TMDB COUNTRY: %s', tmdb['data']['country'])
+                                        logger.debug('국가정보: %s', tmdb['data']['country'][0])
                                     except:
                                         pass
                                 break                                 
