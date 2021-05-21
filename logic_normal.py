@@ -166,6 +166,7 @@ class LogicNormal(object):
                             kor_title = re.sub('[^가-힣]', ' ', en_title).strip()
                             if LogicFtv.search((), kor_title, year) != []:
                                 logger.debug('검색성공. 검색어: %s', kor_title)
+                                en_title = kor_title
                             elif LogicFtv.search((), kor_title, year) == []:
                                 ori_title = re.sub('[ㄱ-ㅎ가-힣]', '', en_title).strip()
                                 if LogicFtv.search((), ori_title, year) != []:
@@ -240,7 +241,7 @@ class LogicNormal(object):
                                 break                                 
                             else:
                                 i = i + 1                                                      
-            return tmdb
+                return tmdb
         except Exception as e:
             logger.error('Exception:%s', e)
             logger.error(traceback.format_exc())
