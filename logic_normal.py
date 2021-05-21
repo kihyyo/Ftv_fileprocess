@@ -125,6 +125,7 @@ class LogicNormal(object):
                 item['year'] = guessit(item['fullPath'])['year']
             except:
                 item['year'] = None
+            item['folder_title'] = guessit(item['fullPath'])['title']
             temp = re.sub('시즌', 's', item['name'])
             item['guessit'] = guessit(temp) 
             item['ext'] = os.path.splitext(f)[1].lower()      
@@ -144,15 +145,15 @@ class LogicNormal(object):
             logger.debug('검색어: %s', en_title)
             
             if LogicFtv.search((), en_title, year) == []:
-                if LogicNormal.isHangul(en_title) >0 :
+                if LogicNormal.isHangul(en_title) > 0 :
                     logger.debug('검색 실패, 추가 검색 중')
-                    en_title = re.sub('[ㄱ-ㅎ가-힣]', '', en_title).strip()
+                    en_title = re.sub('[^가-힣]', ' ', en_title).strip()
                     if LogicFtv.search((), en_title, year) != []:
                             logger.debug('검색성공. 검색어: %s', en_title)
                             tmdb_code = LogicFtv.search((), en_title)[0]['code'].strip()
                             tmdb = SiteTmdbFtv.info(tmdb_code)
                     elif LogicFtv.search((), en_title, year) == []:
-                        en_title = re.sub('[^가-힣]', ' ', en_title).strip()
+                        en_title = re.sub('[ㄱ-ㅎ가-힣]', '', en_title).strip()
                         if LogicFtv.search((), en_title, year) != []:
                             logger.debug('검색성공. 검색어: %s', en_title)
                             tmdb_code = LogicFtv.search((), en_title)[0]['code'].strip()
@@ -161,8 +162,14 @@ class LogicNormal(object):
                             tmdb = None
                             logger.debug('검색 실패')
                 else:
-                    tmdb = None
-                    logger.debug('검색 실패')
+                    en_title = item['folder_title']
+                    if LogicFtv.search((), en_title, year) != []:
+                        logger.debug('검색성공. 검색어: %s', en_title)
+                        tmdb_code = LogicFtv.search((), en_title)[0]['code'].strip()
+                        tmdb = SiteTmdbFtv.info(tmdb_code)
+                    else:
+                        tmdb = None
+                        logger.debug('검색 실패')
                                      
             if LogicFtv.search((), en_title, year) != []:
                 if year is not None:
