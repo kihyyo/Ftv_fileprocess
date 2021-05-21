@@ -409,7 +409,7 @@ class LogicNormal(object):
             command = ['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=height', '-of', 'csv=s=x:p=0', data['fullPath']]
             output = subprocess.Popen(command, stderr=subprocess.STDOUT, stdout=subprocess.PIPE, encoding='utf-8')
             ffprobe_json = json.dumps(output.communicate())
-            if ('1920' in ffprobe_json and ModelSetting.get_bool('uhd_flag')) or ('2160' in ffprobe_json and ModelSetting.get_bool('uhd_flag')):
+            if (ModelSetting.get_bool('uhd_flag') and '1920' in ffprobe_json) or (ModelSetting.get_bool('uhd_flag') and '2160' in ffprobe_json):
                 try: 
                     logger.debug('UHD 파일')
                     try:
