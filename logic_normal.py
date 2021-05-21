@@ -150,27 +150,30 @@ class LogicNormal(object):
                     en_title = re.sub('[^가-힣]', ' ', en_title).strip()
                     if LogicFtv.search((), en_title, year) != []:
                             logger.debug('검색성공. 검색어: %s', en_title)
-                            tmdb_code = LogicFtv.search((), en_title)[0]['code'].strip()
-                            tmdb = SiteTmdbFtv.info(tmdb_code)
                     elif LogicFtv.search((), en_title, year) == []:
                         en_title = re.sub('[ㄱ-ㅎ가-힣]', '', en_title).strip()
                         if LogicFtv.search((), en_title, year) != []:
                             logger.debug('검색성공. 검색어: %s', en_title)
-                            tmdb_code = LogicFtv.search((), en_title)[0]['code'].strip()
-                            tmdb = SiteTmdbFtv.info(tmdb_code)
-                        else:
-                            tmdb = None
-                            logger.debug('검색 실패')
-                else:
+                if LogicFtv.search((), en_title, year) == []:
                     logger.debug('검색 실패. 폴더까지 확대 탐색')
                     en_title = item['folder_title']
                     if LogicFtv.search((), en_title, year) != []:
                         logger.debug('검색성공. 검색어: %s', en_title)
-                        tmdb_code = LogicFtv.search((), en_title)[0]['code'].strip()
-                        tmdb = SiteTmdbFtv.info(tmdb_code)
-                    else:
-                        tmdb = None
-                        logger.debug('검색 실패')
+                    if LogicFtv.search((), en_title, year) == []: 
+                        if LogicNormal.isHangul(en_title) > 0 :
+                            en_title = re.sub('[^가-힣]', ' ', en_title).strip()
+                            if LogicFtv.search((), en_title, year) != []:
+                                logger.debug('검색성공. 검색어: %s', en_title)
+                            if LogicFtv.search((), en_title, year) == []:
+                                en_title = re.sub('[ㄱ-ㅎ가-힣]', '', en_title).strip()
+                                if LogicFtv.search((), en_title, year) != []:
+                                    logger.debug('검색성공. 검색어: %s', en_title)
+                                else:                                
+                                    tmdb = None
+                                    logger.debug('검색 실패')
+                        else:
+                            tmdb = None
+                            logger.debug('검색 실패')
                                      
             if LogicFtv.search((), en_title, year) != []:
                 if year is not None:
