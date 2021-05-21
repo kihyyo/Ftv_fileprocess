@@ -162,6 +162,7 @@ class LogicNormal(object):
                             tmdb = None
                             logger.debug('검색 실패')
                 else:
+                    logger.debug('검색 실패. 폴더까지 확대 탐색')
                     en_title = item['folder_title']
                     if LogicFtv.search((), en_title, year) != []:
                         logger.debug('검색성공. 검색어: %s', en_title)
