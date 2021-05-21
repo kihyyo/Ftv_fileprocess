@@ -409,8 +409,8 @@ class LogicNormal(object):
             command = ['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=height', '-of', 'csv=s=x:p=0', data['fullPath']]
             output = subprocess.Popen(command, stderr=subprocess.STDOUT, stdout=subprocess.PIPE, encoding='utf-8')
             ffprobe_json = json.dumps(output.communicate())
-            if '1920' in ffprobe_json or '2160' in ffprobe_json:
-                if ModelSetting.get_bool('uhd_flag'):
+            if ('1920' in ffprobe_json and ModelSetting.get_bool('uhd_flag')) or ('2160' in ffprobe_json and ModelSetting.get_bool('uhd_flag')):
+                try: 
                     logger.debug('UHD 파일')
                     try:
                         cu_user_list = ast.literal_eval(ModelSetting.get_setting_value('uhd_country_option').strip())
@@ -435,7 +435,7 @@ class LogicNormal(object):
                                 data['dest']=os.path.join(error_path,'sub_x',data['dest_folder_name'],season)
                                 LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
                                 LogicNormal.db_save(data, data['dest'], 'sub_x', True)
-                else:
+                except:
                     pass
             else:
                 try:
