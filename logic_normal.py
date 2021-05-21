@@ -149,7 +149,7 @@ class LogicNormal(object):
                     logger.debug('검색 실패, 추가 검색 중')
                     kor_title = re.sub('[^가-힣]', ' ', en_title).strip()
                     if LogicFtv.search((), kor_title, year) != []:
-                        logger.debug('검색성공. 검색어: %s', en_title)
+                        logger.debug('검색성공. 검색어: %s', kor_title)
                         en_title = kor_title
                     elif LogicFtv.search((), kor_title, year) == []:
                         ori_title = re.sub('[ㄱ-ㅎ가-힣]', '', en_title).strip()
@@ -165,11 +165,11 @@ class LogicNormal(object):
                         if LogicNormal.isHangul(en_title) > 0 :
                             kor_title = re.sub('[^가-힣]', ' ', en_title).strip()
                             if LogicFtv.search((), kor_title, year) != []:
-                                logger.debug('검색성공. 검색어: %s', en_title)
+                                logger.debug('검색성공. 검색어: %s', kor_title)
                             elif LogicFtv.search((), kor_title, year) == []:
                                 ori_title = re.sub('[ㄱ-ㅎ가-힣]', '', en_title).strip()
                                 if LogicFtv.search((), ori_title, year) != []:
-                                    logger.debug('검색성공. 검색어: %s', en_title)
+                                    logger.debug('검색성공. 검색어: %s', ori_title)
                                     en_title = ori_title
                                 else:                                
                                     tmdb = None
