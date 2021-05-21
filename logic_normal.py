@@ -434,7 +434,9 @@ class LogicNormal(object):
                             else: 
                                 data['dest']=os.path.join(error_path,'sub_x',data['dest_folder_name'],season)
                                 LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
-                                LogicNormal.db_save(data, data['dest'], 'sub_x', True)         
+                                LogicNormal.db_save(data, data['dest'], 'sub_x', True)
+                else:
+                    pass
             else:
                 try:
                     cg_user_list = ast.literal_eval(ModelSetting.get_setting_value('ftv_country_option').strip())
