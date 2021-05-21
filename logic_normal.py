@@ -147,13 +147,15 @@ class LogicNormal(object):
             if LogicFtv.search((), en_title, year) == []:
                 if LogicNormal.isHangul(en_title) > 0 :
                     logger.debug('검색 실패, 추가 검색 중')
-                    en_title = re.sub('[^가-힣]', ' ', en_title).strip()
-                    if LogicFtv.search((), en_title, year) != []:
-                            logger.debug('검색성공. 검색어: %s', en_title)
-                    elif LogicFtv.search((), en_title, year) == []:
-                        en_title = re.sub('[ㄱ-ㅎ가-힣]', '', en_title).strip()
+                    kor_title = re.sub('[^가-힣]', ' ', en_title).strip()
+                    if LogicFtv.search((), kor_title, year) != []:
+                        logger.debug('검색성공. 검색어: %s', en_title)
+                        en_title = kor_title
+                    elif LogicFtv.search((), kor_title, year) == []:
+                        ori_title = re.sub('[ㄱ-ㅎ가-힣]', '', en_title).strip()
                         if LogicFtv.search((), en_title, year) != []:
                             logger.debug('검색성공. 검색어: %s', en_title)
+                            en_title = ori_title
                 if LogicFtv.search((), en_title, year) == []:
                     logger.debug('검색 실패. 폴더까지 확대 탐색')
                     en_title = item['folder_title']
@@ -161,13 +163,14 @@ class LogicNormal(object):
                         logger.debug('검색성공. 검색어: %s', en_title)
                     if LogicFtv.search((), en_title, year) == []: 
                         if LogicNormal.isHangul(en_title) > 0 :
-                            en_title = re.sub('[^가-힣]', ' ', en_title).strip()
-                            if LogicFtv.search((), en_title, year) != []:
+                            kor_title = re.sub('[^가-힣]', ' ', en_title).strip()
+                            if LogicFtv.search((), kor_title, year) != []:
                                 logger.debug('검색성공. 검색어: %s', en_title)
-                            if LogicFtv.search((), en_title, year) == []:
-                                en_title = re.sub('[ㄱ-ㅎ가-힣]', '', en_title).strip()
-                                if LogicFtv.search((), en_title, year) != []:
+                            elif LogicFtv.search((), kor_title, year) == []:
+                                ori_title = re.sub('[ㄱ-ㅎ가-힣]', '', en_title).strip()
+                                if LogicFtv.search((), ori_title, year) != []:
                                     logger.debug('검색성공. 검색어: %s', en_title)
+                                    en_title = ori_title
                                 else:                                
                                     tmdb = None
                                     logger.debug('검색 실패')
