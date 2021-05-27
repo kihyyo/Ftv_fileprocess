@@ -18,7 +18,7 @@
   {{ macros.setting_input_text('uhd_base_path', 'UHD 자막 포함 파일 경로', value=arg['uhd_base_path'], desc=['UHD가 이동할 경로']) }}
   {{ macros.setting_input_textarea('uhd_country_option', 'UHD 국가정보 설정', value=arg['uhd_country_option'], row='4', desc=['앞 - TMDB 기반 국가 이름', '뒤 - 하고 싶은 이름']) }}  
   {{ macros.setting_input_text('etc_uhd_country', 'UHD 국가 예외 옵션', value=arg['etc_uhd_country'], desc=['설정하지 않은 경우 기타 항목의 폴더 이름']) }}
-  {{ macros.setting_checkbox('kids_flag', '키즈 따로 처리', value=arg['kids_flag'], desc='On : 애니 따로 처리') }}
+  {{ macros.setting_checkbox('kids_flag', '키즈 따로 처리', value=arg['kids_flag'], desc='On : 키즈 따로 처리') }}
   {{ macros.setting_input_text('kids_base_path', '장르 키즈가 이동할 경로', value=arg['kids_base_path'], desc=['장르 키즈가 이동할 경로']) }}
   {{ macros.setting_checkbox('ani_flag', '애니 따로 처리', value=arg['ani_flag'], desc='On : 애니 따로 처리') }}
   {{ macros.setting_input_text('ani_base_path', '애니메이션이 이동할 경로', value=arg['ani_base_path'], desc=['애니메이션이 이동할 경로']) }}
