@@ -363,14 +363,9 @@ class LogicNormal(object):
                             LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
                             LogicNormal.db_save(data, data['dest'], 'sub_o', True)  
                         else:
-                            if ModelSetting.get_bool('sub_x_flag'):
-                                data['dest']=os.path.join(error_path,'sub_x',data['dest_folder_name'],season,release_group)
-                                LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
-                                LogicNormal.db_save(data, data['dest'], 'sub_x', True)
-                            else:
-                                data['dest']=os.path.join(error_path,'sub_x',data['dest_folder_name'],season)
-                                LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
-                                LogicNormal.db_save(data, data['dest'], 'sub_x', True)
+                            data['dest']=os.path.join(error_path,'sub_x',data['dest_folder_name'],season)
+                            LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
+                            LogicNormal.db_save(data, data['dest'], 'sub_x', True)
                     except Exception as e:
                         logger.error('Exxception:%s', e)
                         logger.error(traceback.format_exc())
@@ -383,14 +378,9 @@ class LogicNormal(object):
                             LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
                             LogicNormal.db_save(data, data['dest'], 'sub_o', True)  
                         else:
-                            if ModelSetting.get_bool('sub_x_flag'):
-                                data['dest']=os.path.join(error_path,'sub_x',data['dest_folder_name'],season,release_group)
-                                LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
-                                LogicNormal.db_save(data, data['dest'], 'sub_x', True)
-                            else:
-                                data['dest']=os.path.join(error_path,'sub_x',data['dest_folder_name'],season)
-                                LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
-                                LogicNormal.db_save(data, data['dest'], 'sub_x', True)
+                            data['dest']=os.path.join(error_path,'sub_x',data['dest_folder_name'],season)
+                            LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
+                            LogicNormal.db_save(data, data['dest'], 'sub_x', True)
                     except Exception as e:
                         logger.error('Exxception:%s', e)
                         logger.error(traceback.format_exc())
@@ -403,14 +393,9 @@ class LogicNormal(object):
                             LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
                             LogicNormal.db_save(data, data['dest'], 'sub_o', True) 
                         else:
-                            if ModelSetting.get_bool('sub_x_flag'):
-                                data['dest']=os.path.join(error_path,'sub_x',data['dest_folder_name'],season,release_group)
-                                LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
-                                LogicNormal.db_save(data, data['dest'], 'sub_x', True)
-                            else:
-                                data['dest']=os.path.join(error_path,'sub_x',data['dest_folder_name'],season)
-                                LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
-                                LogicNormal.db_save(data, data['dest'], 'sub_x', True)
+                            data['dest']=os.path.join(error_path,'sub_x',data['dest_folder_name'],season)
+                            LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
+                            LogicNormal.db_save(data, data['dest'], 'sub_x', True)
                     except Exception as e:
                         logger.error('Exxception:%s', e)
                         logger.error(traceback.format_exc())
@@ -423,14 +408,9 @@ class LogicNormal(object):
                             LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
                             LogicNormal.db_save(data, data['dest'], 'sub_o', True) 
                         else:
-                            if ModelSetting.get_bool('sub_x_flag'):
-                                data['dest']=os.path.join(error_path,'sub_x',data['dest_folder_name'],season,release_group)
-                                LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
-                                LogicNormal.db_save(data, data['dest'], 'sub_x', True)
-                            else:
-                                data['dest']=os.path.join(error_path,'sub_x',data['dest_folder_name'],season)
-                                LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
-                                LogicNormal.db_save(data, data['dest'], 'sub_x', True)
+                            data['dest']=os.path.join(error_path,'sub_x',data['dest_folder_name'],season)
+                            LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
+                            LogicNormal.db_save(data, data['dest'], 'sub_x', True)
                     except Exception as e:
                         logger.error('Exxception:%s', e)
                         logger.error(traceback.format_exc())
@@ -440,11 +420,6 @@ class LogicNormal(object):
                 logger.error('Exception:%s', e)
                 logger.error(traceback.format_exc())
         if tmdb is None:
-            if ModelSetting.get_bool('sub_x_flag'):
-                data['dest']=os.path.join(error_path,'no_meta',data['guessit']['title'],season,release_group)
-                LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
-                LogicNormal.db_save(data, data['dest'], '불일치', True)
-            else:
                 data['dest']=os.path.join(error_path,'no_meta',data['guessit']['title'],season)
                 LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
                 LogicNormal.db_save(data, data['dest'], '불일치', True)
@@ -489,14 +464,9 @@ class LogicNormal(object):
                             LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
                             LogicNormal.db_save(data, data['dest'], 'sub_o', True)
                         else:
-                            if ModelSetting.get_bool('sub_x_flag'):
-                                data['dest']=os.path.join(error_path,'sub_x',data['dest_folder_name'],season,release_group)
-                                LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
-                                LogicNormal.db_save(data, data['dest'], 'sub_x', True)
-                            else: 
-                                data['dest']=os.path.join(error_path,'sub_x',data['dest_folder_name'],season)
-                                LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
-                                LogicNormal.db_save(data, data['dest'], 'sub_x', True)
+                            data['dest']=os.path.join(error_path,'sub_x',data['dest_folder_name'],season)
+                            LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
+                            LogicNormal.db_save(data, data['dest'], 'sub_x', True)
                 except:
                     pass
             else:
@@ -515,14 +485,9 @@ class LogicNormal(object):
                     LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
                     LogicNormal.db_save(data, data['dest'], 'sub_o', True)
                 else:
-                    if ModelSetting.get_bool('sub_x_flag'):
-                        data['dest']=os.path.join(error_path,'sub_x',data['dest_folder_name'],season,release_group)
-                        LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
-                        LogicNormal.db_save(data, data['dest'], 'sub_x', True)
-                    else:
-                        data['dest']=os.path.join(error_path,'sub_x',data['dest_folder_name'],season)
-                        LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
-                        LogicNormal.db_save(data, data['dest'], 'sub_x', True)                                                                                        
+                    data['dest']=os.path.join(error_path,'sub_x',data['dest_folder_name'],season)
+                    LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
+                    LogicNormal.db_save(data, data['dest'], 'sub_x', True)                                                                                        
         except Exception as e:
             logger.error('Exception:%s', e)
             logger.error(traceback.format_exc())  
