@@ -464,7 +464,7 @@ class LogicNormal(object):
                             LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
                             LogicNormal.db_save(data, data['dest'], 'sub_o', True)
                         else:
-                            data['dest']=os.path.join(error_path,'sub_x',data['dest_folder_name'],season)
+                            data['dest']=os.path.join(error_path,'sub_x','UHD',data['dest_folder_name'],season)
                             LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
                             LogicNormal.db_save(data, data['dest'], 'sub_x', True)
                 except:
