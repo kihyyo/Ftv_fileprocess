@@ -443,10 +443,10 @@ class LogicNormal(object):
             except:
                 release_group = 'no_release'
            
-            command = ['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=height', '-of', 'csv=s=x:p=0', data['fullPath']]
+            command = ['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=width', '-of', 'csv=s=x:p=0', data['fullPath']]
             output = subprocess.Popen(command, stderr=subprocess.STDOUT, stdout=subprocess.PIPE, encoding='utf-8')
             ffprobe_json = json.dumps(output.communicate())
-            if (ModelSetting.get_bool('uhd_flag') and '1920' in ffprobe_json) or (ModelSetting.get_bool('uhd_flag') and '2160' in ffprobe_json) or (ModelSetting.get_bool('uhd_flag') and '2076' in ffprobe_json):
+            if (ModelSetting.get_bool('uhd_flag') and '3840' in ffprobe_json) or (ModelSetting.get_bool('uhd_flag') and '4096' in ffprobe_json) :
                 try: 
                     logger.debug('UHD 파일')
                     try:
