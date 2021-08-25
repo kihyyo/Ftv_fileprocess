@@ -143,9 +143,9 @@ class LogicNormal(object):
     @staticmethod
     def search(item):
         try:
+            logger.debug('파일이름: %s', item['name'])
             en_title = item['guessit']['title']
             year = item['year']
-            logger.debug('파일이름: %s', item['name'])
             logger.debug('검색어: %s', en_title)
             
             if LogicFtv.search((), en_title, year) == []:
