@@ -446,10 +446,7 @@ class LogicNormal(object):
             command = ['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=width', '-of', 'csv=s=x:p=0', data['fullPath']]
             output = subprocess.Popen(command, stderr=subprocess.STDOUT, stdout=subprocess.PIPE, encoding='utf-8')
             ffprobe_json = json.dumps(output.communicate())
-            try:
-                if (ModelSetting.get_bool('uhd_flag') and int(ffprobe_json[2:6]) > 3000) :
-            except:
-                pass
+            if (ModelSetting.get_bool('uhd_flag') and int(ffprobe_json[2:6]) > 3000) :
                 try: 
                     logger.debug('UHD 파일')
                     try:
