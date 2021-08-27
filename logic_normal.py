@@ -210,10 +210,10 @@ class LogicNormal(object):
                             i = 0
                             while 0<= i <= len(watcha['data']) - 1:
                                 try:
-                                    t_watcha = watcha['data'][i]['title_en'].strip()
+                                    t_watcha = watcha['data'][i]['title_en'].lower().strip()
                                 except:
                                     t_watcha = 'no_title_en' 
-                                t_tmdb = tmdb['data']['title'].strip()      
+                                t_tmdb = tmdb['data']['title'].lower().strip()      
                                 if t_watcha == t_tmdb and abs(int(watcha['data'][i]['year']) - int(tmdb['data']['year'])) < 2 and LogicNormal.isHangul(watcha['data'][i]['title']) > 0 :                                                  
                                     logger.debug('한글 제목 매칭 성공')
                                     tmdb['data']['title'] = watcha['data'][i]['title']
