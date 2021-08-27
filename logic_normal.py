@@ -446,27 +446,28 @@ class LogicNormal(object):
             command = ['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=width', '-of', 'csv=s=x:p=0', data['fullPath']]
             output = subprocess.Popen(command, stderr=subprocess.STDOUT, stdout=subprocess.PIPE, encoding='utf-8')
             ffprobe_json = json.dumps(output.communicate())
-            if (ModelSetting.get_bool('uhd_flag') and os.path.splitext(data['name'])[1] == '.mkv' and int(ffprobe_json[2:6]) > 3000) :
-                try: 
-                    logger.debug('UHD 파일')
-                    try:
-                        cu_user_list = ast.literal_eval(ModelSetting.get_setting_value('uhd_country_option').strip())
-                        c = tmdb['data']['country'][0]
-                        if c in cu_user_list.keys():
-                            cu = cu_user_list[c]
-                        else:
-                            cu = ModelSetting.get_setting_value('etc_uhd_country').strip()
-                    except:
-                        cu = ModelSetting.get_setting_value('etc_uhd_country').strip()                         
-                        data['dest']=os.path.join(uhd_base_path,cu,data['dest_folder_name'],season)
-                        if LogicNormal.check_kor_sub(data, tmdb, sub_o_path):
-                            logger.debug('이동경로:%s', data['dest'])
-                            LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
-                            LogicNormal.db_save(data, data['dest'], 'sub_o', True)
-                        else:
-                            data['dest']=os.path.join(error_path,'sub_x','UHD',data['dest_folder_name'],season)
-                            LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
-                            LogicNormal.db_save(data, data['dest'], 'sub_x', True)
+            if (ModelSetting.get_bool('uhd_flag') and os.path.splitext(data['name'])[1] == '.mkv' :
+                try:
+                    if int(ffprobe_json[2:6]) > 3000) :
+                        logger.debug('UHD 파일')
+                        try:
+                            cu_user_list = ast.literal_eval(ModelSetting.get_setting_value('uhd_country_option').strip())
+                            c = tmdb['data']['country'][0]
+                            if c in cu_user_list.keys():
+                                cu = cu_user_list[c]
+                            else:
+                                cu = ModelSetting.get_setting_value('etc_uhd_country').strip()
+                        except:
+                            cu = ModelSetting.get_setting_value('etc_uhd_country').strip()                         
+                            data['dest']=os.path.join(uhd_base_path,cu,data['dest_folder_name'],season)
+                            if LogicNormal.check_kor_sub(data, tmdb, sub_o_path):
+                                logger.debug('이동경로:%s', data['dest'])
+                                LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
+                                LogicNormal.db_save(data, data['dest'], 'sub_o', True)
+                            else:
+                                data['dest']=os.path.join(error_path,'sub_x','UHD',data['dest_folder_name'],season)
+                                LogicNormal.file_move(data['fullPath'],data['dest'],data['name'])
+                                LogicNormal.db_save(data, data['dest'], 'sub_x', True)
                 except:
                     pass
             else:
