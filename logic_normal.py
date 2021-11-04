@@ -446,7 +446,7 @@ class LogicNormal(object):
             command = ['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=width', '-of', 'csv=s=x:p=0', data['fullPath']]
             output = subprocess.Popen(command, stderr=subprocess.STDOUT, stdout=subprocess.PIPE, encoding='utf-8')
             ffprobe_json = json.dumps(output.communicate())
-            if (ModelSetting.get_bool('uhd_flag')) and (os.path.splitext(data['name'])[1] in ['.mkv', '.mp4']) and (int(ffprobe_json[2:6]) > 3000) :
+            if (ModelSetting.get_bool('uhd_flag')) and (os.path.splitext(data['name'])[1] in ['.mkv', '.mp4']) and (type(int(ffprobe_json[2:6])) == int) and (int(ffprobe_json[2:6]) > 3000) :
                 logger.debug('UHD 파일')
                 try:
                     cu_user_list = ast.literal_eval(ModelSetting.get_setting_value('uhd_country_option').strip())
