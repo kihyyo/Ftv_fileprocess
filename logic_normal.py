@@ -274,9 +274,12 @@ class LogicNormal(object):
             if re.search('korsub',data['name'].lower()):
                 logger.debug('VOD 파일')
                 return True
-            if data['guessit']['release_group'] in ['SW', 'ST', 'SAP']:
-                logger.debug('VOD 파일')
-                return True
+            try:
+                if data['guessit']['release_group'] in ['SW', 'ST', 'SAP']:
+                    logger.debug('VOD 파일')
+                    return True
+            except:
+                pass
             if os.path.isfile(os.path.splitext(data['fullPath'])[0]+'.ko.srt'):
                 logger.debug('외부 자막 있음') 
                 LogicNormal.file_move(os.path.splitext(data['fullPath'])[0]+'.ko.srt',data['dest'],os.path.splitext(data['name'])[0]+'.ko.srt')
