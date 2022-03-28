@@ -267,7 +267,7 @@ class LogicNormal(object):
             logger.error('Exception:%s', e)
             logger.error(traceback.format_exc())
 
-    @staticmethod
+    
     def check_kor_sub(data, tmdb, sub_o_path):
         logger.debug('자막 체크 시작!')
         try:
@@ -275,7 +275,7 @@ class LogicNormal(object):
                 logger.debug('VOD 파일')
                 return True
             try:
-                if data['guessit']['release_group'] in ['SW', 'ST', 'SAP']:
+                if data['guessit']['release_group'] in ['SW', 'ST', 'SAP', 'SWWV', 'SWWA']:
                     logger.debug('VOD 파일')
                     return True
             except:
