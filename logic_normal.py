@@ -275,7 +275,7 @@ class LogicNormal(object):
                 logger.debug('VOD 파일')
                 return True
             try:
-                if data['guessit']['release_group'] in ['SW', 'ST', 'SAP', 'SWWV', 'SWWA']:
+                if data['guessit']['release_group'] in ['SW', 'ST', 'SAP', 'SWWV', 'SWWC']:
                     logger.debug('VOD 파일')
                     return True
             except:
