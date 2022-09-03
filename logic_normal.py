@@ -131,7 +131,14 @@ class LogicNormal(object):
                 item['year'] = None
             item['folder_title'] = guessit(item['fullPath'])['title']
             temp = re.sub('시즌', 's', item['name'])
-            item['guessit'] = guessit(temp) 
+            try:
+                item['guessit']['title']
+            except:
+                try:
+                    item['guessit']['title'] = temp[0:temp.find(re.search('[sS]\d\d[eE]',temp).group())].replace('.', ' ').strip()
+                except Exception as e:
+                    logger.error('Exception:%s', e)
+                    logger.error(traceback.format_exc())
             item['ext'] = os.path.splitext(f)[1].lower()      
             item['search_name'] = None
             item['uhd'] = 0
