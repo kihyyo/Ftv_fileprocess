@@ -131,6 +131,7 @@ class LogicNormal(object):
                 item['year'] = None
             item['folder_title'] = guessit(item['fullPath'])['title']
             temp = re.sub('시즌', 's', item['name'])
+            item['guessit'] = guessit(temp)
             try:
                 item['guessit']['title']
             except:
