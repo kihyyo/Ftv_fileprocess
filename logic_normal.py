@@ -539,10 +539,16 @@ class LogicNormal(object):
                     if os.path.exists(video_path):
                         for (path, dir, files) in os.walk(video_path, topdown=False):
                             for v in files:
-                                    if item['guessit']['episode'] == guessit(v)['episode'] and item['guessit']['release_group'].lower() == guessit(v)['release_group'].lower():
+                                try:
+                                    if item['guessit']['episode'] == guessit(v)['episode'] and item['guessit']['release_group'].lower() == guessit(v)['release_group'].lower() and item['guessit']['streaming_service'].lower() == guessit(v)['streaming_service'].lower() :
                                         shutil.move(os.path.join(path,v),os.path.join(spath,v))
                                         os.rename(s,os.path.join(spath,os.path.splitext(v)[0]+'.ko.srt'))
-                                        logger.debug("불러오기 성공. 다음 탐색시 이동")                            
+                                        logger.debug("불러오기 성공. 다음 탐색시 이동")      
+                                except:
+                                    if item['guessit']['episode'] == guessit(v)['episode'] and item['guessit']['release_group'].lower() == guessit(v)['release_group'].lower() :
+                                        shutil.move(os.path.join(path,v),os.path.join(spath,v))
+                                        os.rename(s,os.path.join(spath,os.path.splitext(v)[0]+'.ko.srt'))
+                                        logger.debug("불러오기 성공. 다음 탐색시 이동")                           
                     else:
                         logger.debug("자막에 맞는 sub_x 폴더 없음")
                 except:
