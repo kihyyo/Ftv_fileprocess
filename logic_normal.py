@@ -127,16 +127,18 @@ class LogicNormal(object):
             item['fullPath'] = f
             try:
                 item['year'] = guessit(item['fullPath'])['year']
+                if item['year'] < 1950 or item['year'] > datetime.date.today().year + 1:
+                    item['year'] = None
             except:
                 item['year'] = None
             item['folder_title'] = guessit(item['fullPath'])['title']
             temp = re.sub('시즌', 's', item['name'])
             item['guessit'] = guessit(temp)
             try:
-                item['guessit']['title']
+                item['guessit']['title'] = temp[0:temp.find(re.search('[sS]\d\d[eE]',temp).group())].replace('.', ' ').strip()
             except:
                 try:
-                    item['guessit']['title'] = temp[0:temp.find(re.search('[sS]\d\d[eE]',temp).group())].replace('.', ' ').strip()
+                    item['guessit']['title']
                 except Exception as e:
                     logger.error('Exception:%s', e)
                     logger.error(traceback.format_exc())
