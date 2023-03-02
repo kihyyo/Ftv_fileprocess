@@ -135,10 +135,12 @@ class LogicNormal(object):
             temp = re.sub('시즌', 's', item['name'])
             item['guessit'] = guessit(temp)
             try:
-                item['guessit']['title'] = temp[0:temp.find(re.search('[sS]\d\d[eE]',temp).group())].replace('.', ' ').strip()
+                match = re.match('\d{4}',f)
+                if match:
+                    item['guessit']['title'] = match.group()
             except:
                 try:
-                    item['guessit']['title']
+                    item['guessit']['title'] = temp[0:temp.find(re.search('[sS]\d\d[eE]',temp).group())].replace('.', ' ').strip()
                 except Exception as e:
                     logger.error('Exception:%s', e)
                     logger.error(traceback.format_exc())
