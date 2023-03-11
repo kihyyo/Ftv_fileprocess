@@ -135,7 +135,7 @@ class LogicNormal(object):
             temp = re.sub('시즌', 's', item['name'])
             item['guessit'] = guessit(temp)
             try:
-                match = re.match('\d{4}',f)
+                match = re.match('\d{4}',item['name'])
                 if match:
                     item['guessit']['title'] = match.group()
             except:
